@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon kosmetyczny</title>
+    <link rel="stylesheet" href="styl7.css">
+</head>
+<body>
+    <section class="lewy gorny lewy">
+        <h2>Nasza oferta</h2>
+        <ol>
+            <li>
+                <a href="twarz.html">Oczyszczanie twarzy</a>
+                <ul>
+                    <li>Peeling enzymatyczny</li>
+                    <li>Maska</li>
+                </ul>
+            </li>
+            <li>Masaż twarzy</li>
+            <li>Makijaż</li>
+        </ol>
+        <a class="home" href="index.html">Strona główna</a>
+    </section>
+    <section class="lewy dolny lewy">
+        <img src="obraz1_poprawa.jpg" alt="Personel" width="240">
+    </section>
+    <section class="prawy gorny prawy">
+        <h1>Usługi kosmetyczne</h1>
+    </section>
+    <section class="prawy dolny prawy">
+        <h3>Kalkulator ceny wizyty</h3>
+        <label><input type="checkbox" value="Peeling enzymatyczny"> Peeling enzymatyczny</label><br>
+        <label><input type="checkbox" value="Masaz twarzy"> Masaż twarzy</label><br>
+        <label><input type="checkbox" value="Maska"> Maska</label><br>
+        <label><input type="checkbox" value="Regulacja brwi"> Regulacja brwi</label><br>
+        <label><input type="checkbox" value="Farbowanie"> Farbowanie</label><br>
+        <label><input type="checkbox" value="Strzyzenie"> Strzyżenie</label><br>
+      
+        <input type="button" id="obliczBtn" value="Oblicz cenę" disabled>
+        <h3>Telefon: 111 222 333</h3>
+    </section>
+    <footer>
+        <p>Autor: [Sara Głowadzka 2D]</p>
+    </footer>
+
+<script>
+let ceny = {};
+
+
+fetch('/Strona/index.php')
+  .then(response => response.json())
+  .then(data => {
+ ceny = data;
+ document.getElementById('obliczBtn').disabled = false; // odblokuj przycisk
+})
+  .catch(error => {
+      alert('Nuh uhhhh\n' + error);
+});
+document.getElementById('obliczBtn').onclick = function() {
+    let suma = 0;
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(function(checkbox) {
+       
+        let usluga = checkbox.value.trim();
+      
+        for (let key in ceny) {
+            if (key.trim().toLowerCase() === usluga.toLowerCase()) {
+        suma += parseFloat(ceny[key] || 0);
+         break;
+            }
+        }
+    });
+    alert('Cena wizyty: ' + suma + ' zł');
+};
+</script>
+</body>
+</html>

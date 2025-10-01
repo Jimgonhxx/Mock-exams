@@ -1,0 +1,196 @@
+/*
+* {
+    font-family: Cambria, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    overflow: hidden;
+}
+
+
+.lewy {
+    background-color: #E1BEE7;
+    width: 25%;
+    float: left;
+}
+.lewy.gorny {
+    height: 400px;
+    
+
+}
+.lewy.dolny {
+    height: 330px;
+}
+
+
+.prawy {
+    width: 75%;
+    float: left;
+    font-size: 170%;
+    text-align: center;
+}
+.prawy.gorny {
+    background-color: #9C64A6;
+    color: white;
+    height: 150px;
+    letter-spacing: 5px;
+}
+.prawy.dolny {
+    color: indigo;
+    height: 580px;
+}
+
+
+footer {
+    background-color: #9C64A6;
+    color: white;
+    padding: 10px;
+    clear: both;
+    text-align: center;
+}
+
+
+h2 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: circle;
+    padding-left: 20px;
+}
+
+
+img {
+    padding: 4px;
+    margin: 15px;
+}
+img:hover {
+    padding: 3px;
+    border: 1px dashed indigo;
+}
+
+
+.home {
+    display: inline-block;
+    padding: 25px;
+}
+
+*/
+
+
+
+
+
+* {
+    font-family: Cambria, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    /* min-height: 100vh; Ustawia minimalną wysokość na 100% wysokości widoku, jednak grid ustawia ałtomatycznie, więc nie potrzebne */
+    display: grid;
+    grid-template-columns: 25% 75%;            /* lewa 25, prawa 75 */
+      /*grid-template-rows:  400px 330px 150px 580px auto;          pięć rzędów (400 px, 330 px, 150 px, 580 px, a ostatni ma automatyczną wysokość). */
+    grid-template-areas:
+        "lewy-gorny prawy-gorny" /* Definiuje obszary siatki */
+        "lewy-dolny prawy-dolny"
+        ". ." /* Puste miejsce między sekcjami */
+        ". ."
+        "footer footer";
+}
+
+
+.lewy.gorny {
+    grid-area: lewy-gorny;  
+    background-color: #E1BEE7;
+    /*height: 400px;  W treści zadania tak jest, jednak stopka jak dośc na dole strony,*/
+}
+.lewy.dolny {
+    grid-area: lewy-dolny;
+    background-color: #E1BEE7;
+    /*height: 330px; */
+}
+.prawy.gorny {
+    grid-area: prawy-gorny;
+    background-color: #9C64A6;
+    color: white;
+    height: 150px;
+    font-size: 170%;
+    text-align: center;
+    letter-spacing: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.prawy.dolny {
+    grid-area: prawy-dolny;
+    color: indigo;
+    height: 580px;
+    font-size: 170%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+footer {
+    grid-area: footer;
+    background-color: #9C64A6;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+
+h2 {
+    text-align: center;
+}
+
+ol {
+    padding-left: 30px;
+
+}
+
+ul {
+    list-style-type: circle;
+    padding-left: 50px;
+}
+
+
+img {
+    padding: 4px;
+    margin: 15px;
+}
+img:hover {
+    padding: 3px;
+    border: 1px dashed indigo;
+}
+
+/* Link do strony głównej */
+.home {
+    display: inline-block;
+    padding: 25px;
+}
+
+/* To rozumiem */
+@media (max-width: 900px) {
+    body {
+        grid-template-columns: 1fr; /* Jedna kolumna, jedna pod drugą */
+        grid-template-rows: auto;
+        grid-template-areas:
+            "lewy-gorny"
+            "lewy-dolny"
+            "prawy-gorny"
+            "prawy-dolny"
+            "footer";
+    }
+}

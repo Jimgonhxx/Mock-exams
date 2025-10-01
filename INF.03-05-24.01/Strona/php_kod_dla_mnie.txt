@@ -1,0 +1,19 @@
+<!-- <!-- <?php
+
+$conn = new mysqli("localhost", "root", "", "salon");
+if ($conn->connect_error) die("Błąd połączenia");
+
+$sql = "SELECT uslugi, cena FROM uslugi";
+$result = $conn->query($sql);
+
+$ceny = [];
+while($row = $result->fetch_assoc()) {
+    $ceny[$row['usluga']] = $row['cena'];
+}
+echo json_encode($ceny);
+$conn->close();
+?> -->
+ -->
+
+
+
